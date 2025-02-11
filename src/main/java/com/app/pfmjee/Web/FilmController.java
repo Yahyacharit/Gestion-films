@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.math.BigDecimal;
 import java.util.*;
 
 @Controller
@@ -129,6 +130,7 @@ public class FilmController {
         film.setReleaseYear(Short.valueOf(releaseYear));
         film.setLanguage(languagById);
         film.setActors(actors);
+        film.setRentalRate(BigDecimal.valueOf(3));
         film.setCategories(categories);
 
         // Sauvegarde en base
