@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Acteurs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="container mt-5">
+
+    <h1 class="mb-4">Liste des Acteurs</h1>
+
+    <a href="/actors/add" class="btn btn-primary mb-3">
+        <i class="fas fa-user-plus"></i> Ajouter un Acteur
+    </a>
+
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="actor : ${actors}">
+            <td th:text="${actor.actorId}"></td>
+            <td th:text="${actor.firstName}"></td>
+            <td th:text="${actor.lastName}"></td>
+            <td>
+                <a th:href="@{/actors/edit/{id}(id=${actor.actorId})}" class="btn btn-warning btn-sm">
+                    <i class="fas fa-edit"></i> Modifier
+                </a>
+                <a th:href="@{/actors/delete/{id}(id=${actor.actorId})}" class="btn btn-danger btn-sm"
+                   onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet acteur ?');">
+                    <i class="fas fa-trash-alt"></i> Supprimer
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film Detail</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        .film-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        .film-card-header {
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .film-card-body {
+            background-color: #f8f9fa;
+            padding: 30px;
+        }
+
+        .film-card h3 {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #343a40;
+        }
+
+        .back-btn {
+            margin-top: 30px;
+            display: inline-block;
+        }
+
+        .film-card .list-group-item {
+            font-size: 1.1rem;
+        }
+
+        .icon {
+            margin-right: 8px;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card film-card">
+                <div class="card-header film-card-header">
+                    <h2 class="card-title"><i class="bi bi-film"></i> <span th:text="${film.title}"></span></h2>
+                </div>
+                <div class="card-body film-card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p><i class="bi bi-file-text icon"></i><strong>Description: </strong><span th:text="${film.description}"></span></p>
+                            <p><i class="bi bi-calendar icon"></i><strong>Release Year: </strong><span th:text="${film.releaseYear}"></span></p>
+                            <p><i class="bi bi-clock icon"></i><strong>Rental Duration: </strong><span th:text="${film.rentalDuration}"></span> days</p>
+                            <p><i class="bi bi-cash icon"></i><strong>Rental Rate: </strong><span th:text="${film.rentalRate}"></span> USD</p>
+                            <p><i class="bi bi-hourglass icon"></i><strong>Length: </strong><span th:text="${film.length}"></span> minutes</p>
+                            <p><i class="bi bi-currency-dollar icon"></i><strong>Replacement Cost: </strong><span th:text="${film.replacementCost}"></span> USD</p>
+                            <p><i class="bi bi-star icon"></i><strong>Rating: </strong><span th:text="${film.rating}"></span></p>
+                            <p><i class="bi bi-award icon"></i><strong>Special Features: </strong><span th:text="${film.specialFeatures}"></span></p>
+                            <p><i class="bi bi-clock-history icon"></i><strong>Last Update: </strong><span th:text="${film.lastUpdate}"></span></p>
+
+                            <h3><i class="bi bi-tags"></i> Categories:</h3>
+                            <ul class="list-group">
+                                <li th:each="category, iterStat : ${film.categories}" class="list-group-item">
+                                    <span th:text="${category.name}"></span>
+                                </li>
+                            </ul>
+
+                            <h3 class="mt-3"><i class="bi bi-people"></i> Actors:</h3>
+                            <ul class="list-group">
+                                <li th:each="actor : ${film.actors}" class="list-group-item">
+                                    <i class="bi bi-person"></i> <span th:text="${actor.firstName} + ' ' + ${actor.lastName}"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="text-center back-btn">
+                        <a href="/films" class="btn btn-primary"><i class="bi bi-arrow-left"></i> Back to Films</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
